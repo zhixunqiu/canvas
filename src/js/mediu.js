@@ -68,3 +68,12 @@ for(var i = 0; i < numPixels; i++){
     pixels[i*4+3] = 255;
 }
 context.putImageData(imageData,0,0);
+
+//马赛克
+var imageData1 = context.createImageData(500,500);
+var pixels = imageData.data;
+//马赛克块的个数
+var numTitleRows = 4;
+var numTitleCols = 4;
+
+//每个块的尺寸
