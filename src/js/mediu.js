@@ -72,6 +72,38 @@ image.onload = function(){
     //    pixelAlpha = pixelRed + 3;
 }
 
+var image1 = new Image();
+image1.src = 'img/people.png';
+image1.onload = function(){
+    context.drawImage(image1,0,0,460,460,0,500,460,460);
+    var imageData = context.getImageData(0,500,460,460);
+    var pixels = imageData.data;
+ 
+    var numTitleRows = 20;
+    var numTitleCols = 20;
+
+    //每个块的尺寸
+    var titleWidth = imageData.width/numTitleCols;
+    var titleHeight = imageData.height/numTitleRows;
+    for(var r = 0; r < numTitleRows; r++){
+        for(var c = 0; c < numTitleCols; c++){
+            var x = (c*titleWidth) + (titleWidth/2);
+            var y = (r*titleHeight) + (titleHeight/2);
+            var pos = (Math.floor(y)*(imageData1.width*4))+(Math.floor(x)*4);
+            var red = pixels[pos];
+            var green = pixels1[pos+1];
+            var blue = pixels1[pos+2];
+            context.fillStyle = "rgb("+red+", "+green+", "+blue+")";
+            //context.fillRect(x-(titleWidth/2),y-(titleHeight/2)+500,titleWidth,titleHeight);
+            //圆形
+            context.beginPath();
+            context.arc(x,y+500,titleWidth/2,0,Math.PI*2,false);
+            context.closePath();
+            context.fill();
+        }
+    }
+}
+
 var imageData = context.createImageData(100,100);
 var pixels = imageData.data;
 var numPixels = imageData.width*imageData.height;
